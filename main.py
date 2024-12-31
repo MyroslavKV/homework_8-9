@@ -1,6 +1,10 @@
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.responses import RedirectResponse
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
+
 from sqlalchemy.orm import Session
+import secrets
+from typing import Annotated
 from pydantic import BaseModel
 import uvicorn
 
@@ -10,6 +14,8 @@ from models import MovieDB
 init_db()
 
 app = FastAPI()
+
+security = HTTPBasic()
 
 class Movie(BaseModel):
     id
